@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import style from '../style.module.css'
-import state from 'sweetalert/typings/modules/state';
+
 
 const Users = () => {
 
