@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link} from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import { MainContext } from './contexts/MainContext';
 import style from './style.module.css';
 
@@ -17,16 +17,16 @@ const Sidebar = ()=>{
                     <img src="/assets/images/user2.jpg" alt="" />
                 </li>
                 <li>
-                    <Link to="/user">کاربران</Link>
+                    <NavLink to="/user">کاربران</NavLink>
                 </li>
                 <li>
-                    <Link to="post">پست ها</Link>
+                    <NavLink to="post">پست ها</NavLink>
                 </li>
                 <li>
-                    <Link to="gallery">گالری</Link>
+                    <NavLink to="gallery">گالری</NavLink>
                 </li>
                 <li>
-                    <Link to="todo">کارها</Link>
+                    <NavLink to="todo">کارها</NavLink>
                 </li>
             </ul>
         </div>

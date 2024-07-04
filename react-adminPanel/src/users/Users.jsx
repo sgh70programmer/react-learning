@@ -1,49 +1,80 @@
 import React from 'react';
-
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import style from '../style.module.css'
+import state from 'sweetalert/typings/modules/state';
 
-const Users = ()=>{
-   
-    
-        return (
-            <div className={`${style.item_content} mt-5 p-4 container-fluid`}>
-                <h4 className="text-center">مدیریت کاربران</h4>
-                <div className="row my-2 mb-4 justify-content-between w-100 mx-0">
-                    <div className="form-group col-10 col-md-6 col-lg-4">
-                        <input type="text" className="form-control shadow" placeholder="جستجو"/>
-                    </div>
-                    <div className="col-2 text-start px-0">
+const Users = () => {
+
+    const navigate = useNavigate()
+
+    const handleDelete = (itemId) => {
+        swal({
+            title: "حذف رکورد !",
+            text: `آیا از حذف رکورد ${itemId} اطمینان دارید؟`,
+            icon: "warning",
+            buttons: ["خیر", "بله"],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("حذف با موفقیت انجام شد", {
+                        icon: "success",
+                        buttons: "متوجه شدم",
+
+                    });
+                } else {
+                    swal("شما از حذف رکورد منصرف شدید");
+                }
+            });
+    }
+
+    return (
+        <div className={`${style.item_content} mt-5 p-4 container-fluid`}>
+            <h4 className="text-center">مدیریت کاربران</h4>
+            <div className="row my-2 mb-4 justify-content-between w-100 mx-0">
+                <div className="form-group col-10 col-md-6 col-lg-4">
+                    <input type="text" className="form-control shadow" placeholder="جستجو" />
+                </div>
+                <div className="col-2 text-start px-0">
+                    <Link to="/user/add" state={"react"}>
                         <button className="btn btn-success">
                             <i className="fas fa-plus text-light"></i>
                         </button>
-                    </div>
+                    </Link>
                 </div>
-                <table className="table bg-light shadow">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>نام</th>
-                            <th>نام کاربری</th>
-                            <th>ایمیل</th>
-                            <th>عملیات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>qasem</td>
-                            <td>qasemB</td>
-                            <td>mahdicmptr@gmail.com</td>
-                            <td>
-                                <i className="fas fa-edit text-warning mx-2 pointer"></i>
-                                <i className="fas fa-trash text-danger mx-2 pointer"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-        )
-    
+            <table className="table bg-light shadow">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>نام</th>
+                        <th>نام کاربری</th>
+                        <th>ایمیل</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>qasem</td>
+                        <td>qasemB</td>
+                        <td>mahdicmptr@gmail.com</td>
+                        <td>
+                            <i className="fas fa-edit text-warning mx-2 pointer" onClick={() => navigate("/user/add/2",{
+                                state: {
+                                    x: "react",
+                                    y: "angular"
+                                }
+                            })}></i>
+                            <i className="fas fa-trash text-danger mx-2 pointer" onClick={() => handleDelete(1)}></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    )
+
 
 
 
